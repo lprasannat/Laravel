@@ -1,0 +1,9 @@
+<html>
+    <head>
+        <title>laravel</title>
+    </head>
+    <body>
+        @include('layout.navigation')
+        @yield('content')
+    </body>    
+</html>

@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 use App\usertables;
 use Mail;
+use Illuminate\Support\Facades\Input;
+use File;
 
 class BController extends Controller {
 
@@ -35,29 +37,30 @@ class BController extends Controller {
 //    }
 //    
 //
-    public function secure() {
-        $errors = array();
-        $allowedextension = array('jpg', 'jpeg', 'png', 'gif');
-        $FileName = $_FILES['image']['name'];
-        $FileExtension = strtolower(end(explode('.', $FileName)));
-        $FileSize = $_FILES['image']['size'];
-        $File_tmp = $_FILES['image']['tmp_name'];
-        if (in_array($FileExtension, $allowedextension) == false) {
+    public function index() {
 
-            $errors[] = "extension not allowed";
+        return view('secure');
+    }
+
+    public function uploadFiles() {
+
+        $input = input::file('file');
+        $error = array();
+        $allowed = array('jpg', 'jpeg', 'gif', 'png');
+        $file_name = $input->getClientOriginalName();
+        @$file_ext = strtolower(end(explode('.', $file_name)));
+        $file_size = $input->getClientSize();
+        if (in_array($file_ext, $allowed) === FALSE) {
+            $error[] = 'extension not allowed';
         }
-        if ($FileSize > 209152) {
-            $errors[] = "file size must be under 2mb";
+        if ($file_size > 2097152) {
+            $error[] = 'file size should be less than 2 mb';
         }
-        if (empty($errors)) {
-            if (move_uploaded_file($File_tmp, 'images/' . $FileName)) {
-                echo "file uploaded";
-            }
-        } else {
-            foreach ($errors as $error) {
-                echo $error . "<br>";
-            }
+        if (empty($error)) {
+            $input->move("Uploads", $input->getClientOriginalName());
+            $error[] = "successfully uploaded";
         }
+ return View('secure', ['Secure_value' => $error]);
     }
 
 }

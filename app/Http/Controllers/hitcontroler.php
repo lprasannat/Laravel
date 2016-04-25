@@ -25,19 +25,8 @@ class hitcontroler extends BaseController {
         return view('boot', ['currentvalue' => $currentvalue]);
     }
 
-    public function multiplefile() {
-      
-            $files = $_FILES['upload'];
-            for ($x = 0; $x < count($files['name']); $x++) {
-                $name = $files['name'][$x];
-                $tmp_name = $files['tmp_name'][$x];
-                move_uploaded_file($tmp_name, 'upload/' . $name);
-            }
-            return view('multiple');
-//print_r(count($files));
-        }
-    }
+   
 
-
+}
 
 ?>

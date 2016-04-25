@@ -38,15 +38,17 @@
     <body>
         <div class="container">
             <div class="content">
-                <form action="{{ URL::route('secure-post') }}" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <input type="file" name="file">
-                    <input type="submit">
+                <form action="{{ URL::route('multiple') }}" method="post"enctype="multipart/form-data">
+                    
+                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                     <input type="file" name="upload[]" multiple>    
+                    <input type="submit" name="submit" value="Upload">
+
                 </form>
-                <p>@if(isset($Secure_value))
-                    @foreach($Secure_value as $value)
-                    {{ $value}}
-                    @endforeach
+                 <p>@if(isset($multiplefile_value))
+                    
+                     <strong style="color:black;"> {{ $multiplefile_value}}</strong>
+                  
                     @endif</p>
             </div>
         </div>

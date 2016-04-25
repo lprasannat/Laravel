@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use App\accountusers;
 use Hash;
+use Mail;
+use Illuminate\Support\Facades\URL;
+
 
 class accountcontroller extends Controller {
 
@@ -49,11 +52,19 @@ class accountcontroller extends Controller {
                         'active' => 0
             ));
             if ($createuser) {
-                
+                Mail::send('email.activate',array(
+                    'link'=>URL::route('accounts-activate',$code),
+                    'usename'=>$username,function($message) use ($createuser){
+                    $messgae->to($createuser->email,$createuser->username)->subject('Activate ur account');
+                    }                   
+                ));
                 return Redirect::route('home')
                         ->with('global','your account has been created!we have sent you an email to activate');
             }
         }
+    }
+    public function getActivate($code){
+        
     }
 
 }

@@ -38,16 +38,18 @@
     <body>
         <div class="container">
             <div class="content">
-                <form action="{{ URL::route('secure-post') }}" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <input type="file" name="file">
-                    <input type="submit">
+                <form action="{{URL::route('crosssite')}}"  method="post">
+                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="product">
+                        <strong>Product</strong>
+                        <div class="field">
+                            Quantity: <input type="text" name="quantity">
+                        </div>
+                        <input type="submit" value="Order">
+                        <input type="hidden" name="product" value="1">
+                        
+                    </div>
                 </form>
-                <p>@if(isset($Secure_value))
-                    @foreach($Secure_value as $value)
-                    {{ $value}}
-                    @endforeach
-                    @endif</p>
             </div>
         </div>
     </body>

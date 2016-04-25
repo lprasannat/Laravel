@@ -38,15 +38,17 @@
     <body>
         <div class="container">
             <div class="content">
-                <form action="{{ URL::route('secure-post') }}" method="post" enctype="multipart/form-data">
+                <form action="{{URL::route('currencyconverter')}}" method="post">
+                    <input type="text" name="amount"/><br>
+                    <input type="text" name="from"/><br>
+                    <input type="text" name="to"/><br>                    
+                    <input type="submit" name="convert"/>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <input type="file" name="file">
-                    <input type="submit">
                 </form>
-                <p>@if(isset($Secure_value))
-                    @foreach($Secure_value as $value)
-                    {{ $value}}
-                    @endforeach
+                @if(isset($currency_value))
+                    
+                     <strong style="color:black;"> {{ $currency_value}}</strong>
+                  
                     @endif</p>
             </div>
         </div>

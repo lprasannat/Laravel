@@ -5,11 +5,23 @@ Route::get('/', array(
     'as' => 'home',
     'uses' => 'BController@home'
 ));
+Route::get('/boot', array(
+    'as' => 'boot',
+    'uses' => 'hitcontroler@home'
+));
+Route::get('/multiple', array(
+    'as' => 'multiple',
+    'uses' => 'hitcontroler@multiplefile'
+));
+
 Route::get('/index', array(
     'as' => 'boot',
     'uses' => 'BController@exists'
 ));
-
+Route::get('/secure', array(
+    'as' => 'secure',
+    'uses' => 'BController@secure'
+));
 Route::group(array('before' => 'guest'), function() {
 
     Route::group(array('before' => 'csrf'), function() {

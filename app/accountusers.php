@@ -3,19 +3,21 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Routing\Controller as BaseController;
 
-class User extends Authenticatable
+class accountusers extends Authenticatable
 {
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-   protected $fillable = [
-        'name', 'email', 'password',
-    ];
-    /*protected $table='usertables';*/
+       
+   protected $fillable = array(
+         'email','username', 'password','password-again','code','active'
+    );
 
+ protected $table='accountuser';
     /**
      * The attributes that should be hidden for arrays.
      *

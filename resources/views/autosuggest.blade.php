@@ -34,7 +34,7 @@
                 background:#000;
                 color:#fff;
             }
-        </style>
+        </style>-->
         <script>
 
 
@@ -53,13 +53,13 @@ $(document).ready(function () {
     });
 });
 
-        </script>-->
+        </script>
 
     </head>
     <body>
         <div class="container">
             <div class="content">
-                <form action="" method="post">
+                <form action="{{URL::route('autosuggest')}}" method="post">
                     <input type="text" class="autosuggest"><input type="submit" value="search">
                     <div class="dropdown">
                         <ul class="result">

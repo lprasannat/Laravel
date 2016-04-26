@@ -40,6 +40,52 @@ Route::post('/secure',array(
     'as'=>'secure-post',
     'uses'=>'BController@uploadFiles'
 ));
+
+Route::get('/adddecimal', array(
+    'as' => 'adddecimalpoint',
+    'uses' => 'adddecimalpointcontroller@index'
+));
+Route::get('/htmlentities', array(
+    'as' => 'htmlentities',
+    'uses' => 'htmlentities@index'
+));
+Route::get('/namelength', array(
+    'as' => 'namelength',
+    'uses' => 'namelengthcontroller@index'
+));
+Route::get('/maxlength', array(
+    'as' => 'maxlength',
+    'uses' => 'maxlength@index'
+));
+Route::get('/nltobr', 'nl2brcontroller@index');
+Route::post('/nl2brfile', array(
+    'as' => 'nl2br',
+    'uses' => 'nl2brcontroller@nl2br'
+));
+Route::get('/string', array(
+    'as' => 'strtolower',
+    'uses' => 'strtolowercontroller@index'
+));
+Route::get('/findandreplace', 'finandreplacecontroller@home');
+Route::post('/find', array(
+    'as' => 'findandreplace',
+    'uses' => 'finandreplacecontroller@index'
+));
+Route::get('/upordown', 'upordowncontroller@home');
+Route::post('/up', array(
+    'as' => 'upordown',
+    'uses' => 'upordowncontroller@up'
+));
+Route::get('/template', 'templateenginecontroller@home');
+Route::get('/guestbook', 'guestbookcontroller@home');
+Route::post('/guestbooks', array(
+    'as' => 'guestbook',
+    'uses' => 'guestbookcontroller@guestbook'
+));
+
+
+
+
 Route::group(array('before' => 'guest'), function() {
 
     Route::group(array('before' => 'csrf'), function() {

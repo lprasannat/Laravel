@@ -3,17 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/lakshmi/Karmanya/mydev/laravel/resources/views/layout/main.blade.php</file>
-            <file>file:/home/lakshmi/Karmanya/mydev/laravel/resources/views/email/test.blade.php</file>
-            <file>file:/home/lakshmi/Karmanya/mydev/laravel/resources/views/pages/about.blade.php</file>
+            <file>file:/home/lakshmi/Karmanya/mydev/laravel/resources/views/guestbook.blade.php</file>
+            <file>file:/home/lakshmi/Karmanya/mydev/laravel/resources/views/templaeengine.blade.php</file>
+            <file>file:/home/lakshmi/Karmanya/mydev/laravel/app/Http/Controllers/currencycontroller.php</file>
+            <file>file:/home/lakshmi/Karmanya/mydev/laravel/app/Http/Controllers/finandreplacecontroller.php</file>
+            <file>file:/home/lakshmi/Karmanya/mydev/laravel/resources/views/currencyconverter.blade.php</file>
+            <file>file:/home/lakshmi/Karmanya/mydev/laravel/app/Http/Controllers/adddecimalpointcontroller.php</file>
             <file>file:/home/lakshmi/Karmanya/mydev/laravel/app/Http/routes.php</file>
-            <file>file:/home/lakshmi/Karmanya/mydev/laravel/resources/views/home.blade.php</file>
-            <file>file:/home/lakshmi/Karmanya/mydev/laravel/app/Http/Controllers/accountcontroller.php</file>
-            <file>file:/home/lakshmi/Karmanya/mydev/laravel/resources/views/layout/layouts.blade.php</file>
-            <file>file:/home/lakshmi/Karmanya/mydev/laravel/resources/views/accounts/create.blade.php</file>
-            <file>file:/home/lakshmi/Karmanya/mydev/laravel/resources/views/layout/navigation.blade.php</file>
-            <file>file:/home/lakshmi/Karmanya/mydev/laravel/app/Http/Controllers/BController.php</file>
-            <file>file:/home/lakshmi/Karmanya/mydev/laravel/app/accountusers.php</file>
+            <file>file:/home/lakshmi/Karmanya/mydev/laravel/public/templateengine.blade.php</file>
+            <file>file:/home/lakshmi/Karmanya/mydev/laravel/app/Http/Controllers/templateenginecontroller.php</file>
+            <file>file:/home/lakshmi/Karmanya/mydev/laravel/app/Http/Controllers/guestbookcontroller.php</file>
+            <file>file:/home/lakshmi/Karmanya/mydev/laravel/resources/views/adddecimalpoint.blade.php</file>
         </group>
     </open-files>
 </project-private>

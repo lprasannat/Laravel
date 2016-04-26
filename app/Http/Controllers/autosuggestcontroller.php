@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\File;
 
 class autosuggestcontroller extends BaseController {
 
-//    public function index() {
-//        return view('autosuggest');
-//    }
+    public function index() {
+       return view('autosuggest');
+    }
 
     public function auto() {
         echo "hai";

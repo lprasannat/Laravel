@@ -39,7 +39,7 @@
         <div class="container">
             <div class="content">
                 <form action="{{URL::route('crosssite')}}"  method="post">
-                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                      <input type="hidden" name="_token" value="<?php crosssitecontroller::generate(); ?>">
                     <div class="product">
                         <strong>Product</strong>
                         <div class="field">

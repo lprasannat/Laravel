@@ -25,7 +25,7 @@ Route::post('/autosuggest', array(
     'uses' => 'autosuggestcontroller@auto'
 ));
 Route::get('/crosssite', 'crosssitecontroller@index');
-Route::post('/crosssite', array(
+Route::post('/cross', array(
     'as' => 'crosssite',
     'uses' => 'crosssitecontroller@cross'
 ));
@@ -34,11 +34,11 @@ Route::get('/index', array(
     'uses' => 'BController@exists'
 ));
 
-Route::get('/secure', 'BController@index');
+Route::get('/secure', 'SecureController@index');
 
 Route::post('/secure',array(
-    'as'=>'secure-post',
-    'uses'=>'BController@uploadFiles'
+    'as'=>'Secure',
+    'uses'=>'SecureController@uploadFiles'
 ));
 
 Route::get('/adddecimal', array(
@@ -77,12 +77,36 @@ Route::post('/up', array(
     'uses' => 'upordowncontroller@up'
 ));
 Route::get('/template', 'templateenginecontroller@home');
-Route::get('/guestbook', 'guestbookcontroller@home');
+Route::get('/guestbook', 'guestbookcontroller@index');
 Route::post('/guestbooks', array(
     'as' => 'guestbook',
-    'uses' => 'guestbookcontroller@guestbook'
+    'uses' => 'guestbookcontroller@guest'
 ));
+Route::get('/translate', 'TransulateController@index');
 
+Route::get('/translate',array(
+    'as'=>'Transulate',
+    'uses'=>'TransulateController@english'));
+Route::get('/xmlfeed', 'XmlfeedController@index');
+Route::get('/photoalbum', 'PhotoalbumController@index');
+Route::get('/findreplace', 'FindreplaceController@index');
+Route::post('/findreplace',array(
+    'as'=>'Findreplace-post',
+    'uses'=>'FindreplaceController@operation'));
+Route::get('/bbcode', 'BbController@index');
+
+Route::get('/classfile', 'classfilecontroller@index');
+
+Route::get('/encapsulation', 'encapsulationcontroller@index');
+Route::get('/calci', 'calculatorcontroller@index');
+Route::get('/constructor', 'constructorcontroller@index');
+Route::get('/method', 'methodcontroller@index');
+Route::get('/inherit', 'inheritancecontroller@index');
+Route::get('/scope', 'scopecontroller@index');
+Route::get('/constant', 'constantcontroller@index');
+Route::get('/static', 'staticcontroller@index');
+Route::get('/database', 'databasecontroller@index');
+Route::get('/dynamic', 'dynamiccontroller@home');
 
 
 

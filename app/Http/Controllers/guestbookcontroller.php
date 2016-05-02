@@ -1,5 +1,11 @@
 <?php
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 namespace App\Http\Controllers;
 
 //namespace App\Http\Controllers\Redirect;
@@ -15,6 +21,9 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Translation\FileLoader;
 use Illuminate\Contracts\Filesystem\Factory;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+use DateTime;
 
 class guestbookcontroller extends BaseController {
 
@@ -23,36 +32,36 @@ class guestbookcontroller extends BaseController {
         DispatchesJobs,
         ValidatesRequests;
 
-    public function home() {
-        return view('guestbook');
+    public function index() {
+
+        return View('guestbook');
     }
 
-    public function guestbook() {
-        echo "hai";
-        $time = time();
-        $errors = array();
-//        $guestbook_name = Input::get('guestbook_name');
-//        $guestbook_email = Input::get('guestbook_email');
-//        $guestbook_message = Input::get('guestbook_message');
-        if (isset($_POST['guestbook_name'], $_POST['guestbook_email'], $_POST['guestbook_message'])) {
-            $guestbook_name = $_POST['guestbook_name'];
-            //echo $guestbook_name;
-            $guestbook_email = $_POST['guestbook_email'];
-            $guestbook_message = $_POST['guestbook_message'];
-            if (empty($guestbook_name) || empty($guestbook_email) || empty($guestbook_message)) {
-                $errors[]= "all fields are required";
-                
-            }
-            if (strlen($guestbook_name) > 45 || strlen($guestbook_email) > 255 || strlen($guestbook_message) > 255) {
-                $errors[]= "one or more fileds exceeded ";
-            }
-            if(empty($errors)){
-                $insert=DB::query("INSERT INTO entries VALUES('','$time','$guestbook_name','$guestbook_email','$guestbook_message')");
-                if($insert){
-                    echo 'hello';
-                }
-            }
+    public function guest() {
+        $Input = Input::all();
+        $DateTime=  new DateTime();
+        $Time=$DateTime->format('Y-m-d H:i:s');
+        $Name = htmlentities($Input['name']);
+        $Email = htmlentities($Input['email']);
+        $Message = htmlentities($Input['message']);
+        if (empty($Name) && empty($Email) && empty($Message)) {
+            $Error[] = "All fields are required";
         }
+        if (strlen($Name) > 25 || strlen($Email) > 80 || strlen($Message) > 200) {
+            $Error[] = "one or more fields exceed their limit";
+        }
+        if (empty($Error)) {
+            DB::table('entries')->insert(
+                   ['timestamp' => $Time, 'name' => $Name,'email'=>$Email,'message'=>$Message]
+          );
+           $Error[]="Successfully posted";
+        }
+        else{
+              $Error[]="something went Wrong";
+        }
+        
+        $Users = DB::table('entries')->select('name', 'email','message','timestamp')->where('email',$Email)->get();   
+        return View('guestbook', ['Guest_error' => $Error,'Guest_user'=>$Users]); 
     }
 
 }

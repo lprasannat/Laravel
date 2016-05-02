@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\File;
 class crosssitecontroller extends BaseController {
 
     public function index() {
+        Session::regenerate();
         return view('crosssite');
     }
 
@@ -24,20 +25,23 @@ class crosssitecontroller extends BaseController {
         if (isset($_POST['quantity'], $_POST['product'])) {
             //echo $quantity;
             if (!empty($product) && ($quantity)) {
-                if (Token::check($_POST['token'])) {
+                
+                if (crosssitecontroller::check($_POST['_token'])) {
                     echo "process order";
                 }
             }
         }
     }
 
-    public static function generate() {
-        return $_SESSION['token'] = base64_encode(openssl_random_pseudo_bytes(32));
+    public  function generate() {
+       
+        return $_SESSION['_token'] = base64_encode(openssl_random_pseudo_bytes(32));
     }
 
-    public static function check($token) {
-        if (isset($_SESSION['token']) && $token === $_SESSION['token']) {
-            unset($_SESSION['token']);
+    public  function check($_token) {
+        if (isset($_SESSION['_token']) && $token === $_SESSION['_token']) {
+            echo $_SESSION['_token'];
+            unset($_SESSION['_token']);
             return true;
         }
         return false;

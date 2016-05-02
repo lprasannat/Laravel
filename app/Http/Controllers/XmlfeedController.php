@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 //namespace App\Http\Controllers\Redirect;
 
 use File;
@@ -14,11 +15,9 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Translation\FileLoader;
 use Illuminate\Contracts\Filesystem\Factory;
-use App\User;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
-
-class autosuggestcontroller extends BaseController {
+class XmlfeedController extends BaseController {
 
     use AuthorizesRequests,
         AuthorizesResources,
@@ -26,23 +25,23 @@ class autosuggestcontroller extends BaseController {
         ValidatesRequests;
 
     public function index() {
-          
-        return view('autosuggest');
+        $feer_url = 'http://www.php.net/feed.atom';
+        $feed = simplexml_load_file($feer_url);
+        //print_r($feed);
+        $limit = 10;
+        $x = 1;
+        foreach ($feed as $items) {
+            if ($x <= $limit) {
+
+                $title[] = $items->title;
+                $url[] = $items->id;
+                //echo '<li><a href="',$url,'">',$title,'</a></li>';
+            }
+            $x++;
+        }
+
+
+        return View('Xmlfeed', ['Xmlfeed_url' => $url, 'Xmlfeed_title' => $title]);
     }
-    public function auto() {
-         $input=Input::get('searchitem');
-         
-      $users = DB::table('structure')
-             ->where('city', 'like', $input.'%')
-             ->get();
-     //print_r($users);
-     foreach ($users as $cities)
-     {      
-         foreach ($cities as $city_name)
-         {
-             echo '<li>'.$city_name.'</li>';
-         }
-     }
-    
-    }
+
 }

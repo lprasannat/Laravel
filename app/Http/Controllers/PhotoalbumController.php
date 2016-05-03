@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
 //namespace App\Http\Controllers\Redirect;
-
 use File;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -16,14 +14,11 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Translation\FileLoader;
 use Illuminate\Contracts\Filesystem\Factory;
 use Illuminate\Support\Facades\Session;
-
 class PhotoalbumController extends BaseController {
-
     use AuthorizesRequests,
         AuthorizesResources,
         DispatchesJobs,
         ValidatesRequests;
-
     public function index() {
         $page = $_SERVER['PHP_SELF'];
         $column = 2;
@@ -49,7 +44,6 @@ class PhotoalbumController extends BaseController {
        return View('Photoalbum', ['Photoalbum_folder' => $folder,"choice"=>$choice]);
     }
     public function folder($folder){
-      
        $path='data/'.$folder;
         $file=  File::Files($path);
         //print_r($file);

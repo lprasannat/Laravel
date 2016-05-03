@@ -4,11 +4,11 @@
         <title>
             PHOTO ALBUM
         </title>
-        <link href="lightbox.css" rel="stylesheet">
-        <link href="styles.css"  rel="stylesheet">
+        <link href="css/lightbox.css" rel="stylesheet">
+        <link href="css/styles.css"  rel="stylesheet">
         
-        <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script> 
-        <script type="text/javascript" src="js/lightbox-2.6.min.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script> 
+        <script type="text/javascript" src="js/lightbox.min.js"></script>
    
 </head>
 <body> 
@@ -24,7 +24,7 @@
 
             @if(isset($image))  
             @foreach($image as $path)
-            <a href="{{$path}}" data-lightbox='nondatabasealbum'><img src="{{$path}}" width="100" height="100" /></a>
+            <a href="/{{$path}}" data-lightbox='nondatabasealbum'><img src="/{{$path}}" width="100" height="100" /></a>
             @endforeach
             @endif  
             <br/><a href="{{URL::route('index')}}">Back to Album</a>

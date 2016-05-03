@@ -36,9 +36,9 @@ Route::get('/index', array(
 
 Route::get('/secure', 'SecureController@index');
 
-Route::post('/secure',array(
-    'as'=>'Secure',
-    'uses'=>'SecureController@uploadFiles'
+Route::post('/secure', array(
+    'as' => 'Secure',
+    'uses' => 'SecureController@uploadFiles'
 ));
 
 Route::get('/adddecimal', array(
@@ -84,15 +84,49 @@ Route::post('/guestbooks', array(
 ));
 Route::get('/translate', 'TransulateController@index');
 
-Route::get('/translate',array(
-    'as'=>'Transulate',
-    'uses'=>'TransulateController@english'));
+Route::get('/translate', array(
+    'as' => 'Transulate',
+    'uses' => 'TransulateController@english'));
+
+
+
 Route::get('/xmlfeed', 'XmlfeedController@index');
-Route::get('/photoalbum', 'PhotoalbumController@index');
+Route::get('/photoalbum', array(
+    'as' => 'index',
+    'uses' => 'PhotoalbumController@index'));
+Route::get('/photoalbum/{folder}', array(
+    'as' => 'folder',
+    'uses' => 'PhotoalbumController@folder'));
+
+
+Route::get('/spellcheck', 'SpellcheckerController@index');
+Route::post('/spellcheck', array(
+    'as' => 'Spellchecker',
+    'uses' => 'SpellcheckerController@check'));
+
+Route::get('/search', 'SearchengineController@index');
+Route::post('/searches', array(
+    'as' => 'Searchengine',
+    'uses' => 'SearchengineController@search'));
+
+Route::get('/rating', 'WebsiteRateController@index');
+Route::post('/ratings/{item}/{rating}/{limit}', array(
+    'as' => 'websiteindex',
+    'uses' => 'WebsiteRateController@rating'));
+Route::get('shoutbox', array(
+    'as' => 'shoutbox',
+    'uses' => 'ShoutController@shout'));
+Route::post('/ShoutBox-Upload', array(
+    'as' => 'shoutboxsubmit',
+    'uses' => 'ShoutController@shoutboxsubmit'
+));
+
+
+
 Route::get('/findreplace', 'FindreplaceController@index');
-Route::post('/findreplace',array(
-    'as'=>'Findreplace-post',
-    'uses'=>'FindreplaceController@operation'));
+Route::post('/findreplace', array(
+    'as' => 'Findreplace-post',
+    'uses' => 'FindreplaceController@operation'));
 Route::get('/bbcode', 'BbController@index');
 
 Route::get('/classfile', 'classfilecontroller@index');

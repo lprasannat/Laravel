@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 //namespace App\Http\Controllers\Redirect;
 
 use File;
@@ -14,11 +15,11 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Translation\FileLoader;
 use Illuminate\Contracts\Filesystem\Factory;
-use App\User;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
-
-class autosuggestcontroller extends BaseController {
+class WebsiteRateController extends BaseController {
 
     use AuthorizesRequests,
         AuthorizesResources,
@@ -26,23 +27,7 @@ class autosuggestcontroller extends BaseController {
         ValidatesRequests;
 
     public function index() {
-          
-        return view('autosuggest');
+        return View('Urlshortner');
     }
-    public function auto() {
-         $input=Input::get('searchitem');
-         
-      $users = DB::table('structure')->select('city')
-             ->where('city', 'like', $input.'%')
-             ->get();
-     //print_r($users);
-     foreach ($users as $cities)
-     {      
-         foreach ($cities as $city_name)
-         {
-             echo '<li>'.$city_name.'</li>';
-         }
-     }
-    
-    }
+
 }

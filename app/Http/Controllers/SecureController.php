@@ -33,7 +33,7 @@ class SecureController extends BaseController {
     public function uploadFiles() {
 
      
-        $input = input::file('file');
+        $input = input::file('image');
        //print_r($input);
          //$input->move("Uploads", $input->getClientOriginalName());
          //echo "success";
@@ -58,7 +58,7 @@ class SecureController extends BaseController {
      if(empty($error)){
 //    //move_uploaded_file($input['tmp_name'], "upload/$file_name");
     $input->move("Uploads", $input->getClientOriginalName());
-    $error[]="successfully uploaded";
+    echo "successfully uploaded";
    }
 //   else{
 //      foreach ($error as $value) {

@@ -35,13 +35,14 @@ class crosssitecontroller extends BaseController {
 
     public  function generate() {
        
-        return $_SESSION['_token'] = base64_encode(openssl_random_pseudo_bytes(32));
+        return Session::put('_token') = base64_encode(openssl_random_pseudo_bytes(32));
     }
 
     public  function check($_token) {
-        if (isset($_SESSION['_token']) && $token === $_SESSION['_token']) {
-            echo $_SESSION['_token'];
-            unset($_SESSION['_token']);
+        echo "hai";
+        if (Session::has('_token') && $token ===Session::get('_token')) {
+
+            unset(Session::get('_token'));
             return true;
         }
         return false;

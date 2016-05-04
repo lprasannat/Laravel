@@ -14,7 +14,7 @@
             @foreach ($Result as $result_data)
             <br/>
           <?php   $result_data['Rating']=($result_data['rating_count']!=0)?$result_data['rating_total']/$result_data['rating_count']:0;
-           $result_data['Rating']=  number_format( $result_data['Rating'], 1)
+          $result_data['Rating']=  number_format( $result_data['Rating'], 1)
           ?>
               {{$result_data['title']."(". $result_data['Rating'].")"}} 
               <br/>

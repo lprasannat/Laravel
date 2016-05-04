@@ -30,9 +30,9 @@ class TransulateController extends BaseController {
     }
 
     public function english() {
-        $obj = new TansulateController();
+        $obj = new TransulateController();
         $lang = 'english';
-
+        
         $words = array(
             'Hello' => 'hello',
             'coffee' => 'coffee'
@@ -42,7 +42,7 @@ class TransulateController extends BaseController {
     }
 
     public function deutsch() {
-        $obj = new TansulateController();
+        $obj = new TransulateController();
         $lang = 'deutsch';
         $words = array(
             'Hello' => 'hallo',

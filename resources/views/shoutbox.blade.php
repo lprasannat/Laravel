@@ -31,7 +31,7 @@
                 <div class="col-md-2">
                     <div class="form-group">
                         <label for='name' class="control-label">Name:</label>
-                        <input type="text" id='name' name="name" value="guest" class="form-control">
+                        <input type="text" id='name' name="name" value="" class="form-control">
                     </div>
                 </div>
                 <div class="col-md-6">

@@ -45,19 +45,22 @@ class SpellcheckerController extends BaseController {
     public function spellchecker($word) {
 
         $sub_words = substr($word, 0, 1);
-      
-        $data = DB::table('Spellchecker')->select('word')->where('word', 'like', $sub_words . '%')->get();
-       print_r($data);
-        foreach ($data as $array) {
-            foreach ($array as $x => $value) {
-                if ($x == 'word') {
+
+        $data = DB::table('Spellchecker')->select('Word')->where('Word', 'like', $sub_words . '%')->get();
+     
+        foreach ($data as $vas) {
+            foreach ($vas as $x => $value) {
+                if ($x == 'Word') { 
+                   
                     similar_text($word, $value, $percent);
-                    if ($percent > 80)
+                    if ($percent > 80){
                         $output[] = $value;
+                    }
+                    
                 }
             }
         }
-        return (empty($output) ? false : $output);
+        print_r (empty($output) ? false : $output);
     }
 
 }

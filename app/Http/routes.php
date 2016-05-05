@@ -164,13 +164,34 @@ Route::post('getchat', array(
     'uses' => 'ChatWindowController@getchat'
 ));
 
+//watermark------------------------------------------------
+Route::get('/watermark', 'WatermarkController@index');
+Route::post('watermarks/upload', array(
+    'as' => 'water',
+    'uses' => 'WatermarkController@home'));
+//Route::post('watermarks/upload', array(
+//    'as' => 'water',
+//    'uses' => 'WatermarkController@watermark_image'));
+//Mailing list
+Route::get('mailinglist', array(
+    'as' => 'mailinglist',
+    'uses' => 'localController@mailinglist'
+));
+Route::post('mailinglist/maillistsubmit', array(
+    'as' => 'mailinglist/maillistsubmit',
+    'uses' => 'localController@maillistsubmit'));
 
+//php expert string functions--------------------------------
+Route::get('/stringfunctions', 'PhpExpertStringController@index');
+Route::get('/stringfunctions12', 'PhpExpertStringController@NameLength');
+Route::get('/explode', 'PhpExpertStringController@explode');
+Route::get('/implode', 'PhpExpertStringController@implode');
+Route::get('/join', 'PhpExpertStringController@join');
+Route::get('/substrcount', 'PhpExpertStringController@substr_count');
+Route::get('/substrreplace', 'PhpExpertStringController@substr_replace');
+Route::get('/datetotime', 'PhpExpertStringController@datetotime');
+Route::get('/crawl', 'PhpExpertStringController@crawled');
 
-
-//Route::get('/findreplace', 'FindreplaceController@index');
-//Route::post('/findreplace', array(
-//    'as' => 'Findreplace-post',
-//    'uses' => 'FindreplaceController@operation'));
 //bbcode---------------------------------------------------------
 Route::get('/bbcode', 'BbController@index');
 //oops routes----------------------------------------------------

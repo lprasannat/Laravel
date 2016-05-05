@@ -11,20 +11,13 @@
         <div class="container">
             <div class="content">
 
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{URL::route('water')}}" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     Choose an image
-                    <input type="file" name="image">
+                    <input type="file" name="upload">
                     <input type="submit" value="Watermark">
                 </form>
-                <!--           <form action="{{ URL::route('Findreplace-post') }}" method="post" enctype="multipart/form-data">
-                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        
-                            <input type="text" name="find" placeholder="words,to,find"/>
-                            <input type="text" name="replace" placeholder="replace,text,here"/><br>
-                            <p><textarea name="text" rows="10" cols="30">
-                               </textarea></p>
-                            <input type="submit" value="submit" name="submit"/>
-                           </form>-->
+                
             </div>
         </div>
     </body>

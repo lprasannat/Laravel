@@ -28,10 +28,15 @@ Route::post('/autosuggest', array(
     'uses' => 'autosuggestcontroller@auto'
 ));
 //crosssite-----------------------------------------------------
-Route::get('/crosssite', 'crosssitecontroller@index');
-Route::post('/cross', array(
-    'as' => 'crosssite',
-    'uses' => 'crosssitecontroller@cross'
+Route::get("/Csrf", 'CsrfController@index');
+
+Route::get('csrfprocess/{message}', array(
+    'as' => 'csrfprocess',
+    'uses' => 'CsrfController@indexsecond'
+));
+Route::post('Csrf', array(
+    "as" => 'csrf',
+    'uses' => 'CsrfController@csrf'
 ));
 Route::get('/index', array(
     'as' => 'boot',
@@ -91,12 +96,23 @@ Route::post('/guestbooks', array(
     'uses' => 'guestbookcontroller@guest'
 ));
 //transulate page lang------------------------------------------
-Route::get('/translate', 'TransulateController@index');
-Route::get('/translate', array(
-    'as' => 'Transulate',
-    'uses' => 'TransulateController@english'));
-Route::get('/translates/deustch', 'TransulateController@deutsch');
+Route::get('translate/{language}', array(
+    "as" => 'translate',
+    'uses' => 'TransulateController@translate'
+));
 
+Route::get('translatepage', array(
+    "as" => 'translatepage',
+    'uses' => 'TransulateController@main'
+));
+Route::any('menu/{language}', array(
+    'as' => 'menu',
+    'uses' => 'TransulateController@menu'));
+
+// spellcheck-----------------------------------------------------------------------
+
+Route::get('spellchecker', 'SpellcheckerController@spellcheck');
+Route::post('checkspelling', 'SpellcheckerController@checkspelling');
 
 //xmlfeed-----------------------------------------------------
 Route::get('/xmlfeed', 'XmlfeedController@index');
@@ -108,11 +124,6 @@ Route::get('/photoalbum/{folder}', array(
     'as' => 'folder',
     'uses' => 'PhotoalbumController@folder'));
 
-//spellcheck--------------------------------------------------
-Route::get('/spellcheck', 'SpellcheckerController@index');
-Route::post('/spellcheck', array(
-    'as' => 'Spellchecker',
-    'uses' => 'SpellcheckerController@check'));
 //search engine-----------------------------------------------
 Route::get('/search', 'SearchengineController@index');
 Route::post('/searches', array(
@@ -128,20 +139,7 @@ Route::get('/WebsiteRating/{item}/{rating}/{limit}', array(
     'uses' => 'WebsiteRateController@rating'
 ));
 //upload images----------------
-//Route::get('/register', 'UploadController@register');
-Route::get('/register', array(
-    'as' => 'register',
-    'uses' => 'UploadController@login'
-));
-Route::post('/submit', array(
-    'as' => 'submit',
-    'uses' => 'UploadController@submit'
-));
-
-Route::get('/registers', array(
-    'as' => 'Login',
-    'uses' => 'UploadController@login'
-));
+Route::get('imageupload', 'ImageController@home');
 //shout box----------------------
 Route::get('shoutbox', array(
     'as' => 'shoutbox',
@@ -172,7 +170,7 @@ Route::post('watermarks/upload', array(
 //Route::post('watermarks/upload', array(
 //    'as' => 'water',
 //    'uses' => 'WatermarkController@watermark_image'));
-//Mailing list
+//Mailing list-----------------------------------------------
 Route::get('mailinglist', array(
     'as' => 'mailinglist',
     'uses' => 'localController@mailinglist'
@@ -180,7 +178,23 @@ Route::get('mailinglist', array(
 Route::post('mailinglist/maillistsubmit', array(
     'as' => 'mailinglist/maillistsubmit',
     'uses' => 'localController@maillistsubmit'));
-
+//URL shortner------------------------------------------------
+Route::get('/UrlShorten', 'UrlController@index');
+Route::post('/shorten', 'UrlController@shorten');
+//EmailPiping----------------------------------------------------
+Route::get('/emailpiping', 'EmailPipingController@index');
+Route::get('/emails', array(
+    'as' => 'Emailpiping',
+    'uses' => 'EmailPipingController@emailPiping'
+));
+//Dynamic rss------------------------------------------------------
+Route::get('/dynamicrss', 'DynamicRssController@index');
+//LikeButton -------------------------------------------------------
+Route::get('/like', 'LikeButtonController@index');
+//Route::get('/likebutton', array(
+//    'as' => 'LikeButton',
+//    'uses' => 'LikeButtonController@init'
+//));
 //php expert string functions--------------------------------
 Route::get('/stringfunctions', 'PhpExpertStringController@index');
 Route::get('/stringfunctions12', 'PhpExpertStringController@NameLength');

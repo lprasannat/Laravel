@@ -26,41 +26,40 @@ class SpellcheckerController extends BaseController {
         DispatchesJobs,
         ValidatesRequests;
 
-    public function index() {
-
-        return view('Spellchecker');
+   public function spellcheck() {
+        return View('Spellchecker');
     }
 
-    public function check() {
-        $input = Input::all();
-      $word=$input['word'];
-      echo $word;
-        if (empty($word) === FALSE)
-            $word = trim($word);
-        $object = new SpellcheckerController();
-        $result = $object->spellchecker($word);
-        return View('Spellchecker', ['Result' => $result]);
-    }
+    public function checkspelling() {
 
-    public function spellchecker($word) {
+        $word = Input::get('word');
+        $result = null;
+        $result2 = null;
+        $success = 0;
+        $letter = substr($word, 0, 1);
+        $spelling = DB::table('Spellchecker')->where("Word", "like", $letter . "%")->get();
 
-        $sub_words = substr($word, 0, 1);
+        foreach ($spelling as $users1) {
+            foreach ($users1 as $x => $users2) {
 
-        $data = DB::table('Spellchecker')->select('Word')->where('Word', 'like', $sub_words . '%')->get();
-     
-        foreach ($data as $vas) {
-            foreach ($vas as $x => $value) {
-                if ($x == 'Word') { 
-                   
-                    similar_text($word, $value, $percent);
-                    if ($percent > 80){
-                        $output[] = $value;
+                similar_text($word, $users2, $percent);
+                //echo $percent; exit;
+                if ($percent > 70) {
+                    $result.="<li>" . $users2 . "</li>";
+                    echo $result;
+
+                    if ($percent > 90) {
+                        $success = 1;
+                        $result2 = "<li>" . $users2 . "</li>";
                     }
-                    
                 }
             }
+            if ($success == 1) {
+                echo $result;
+            } else {
+                echo $result2;
+            }
         }
-        print_r (empty($output) ? false : $output);
     }
 
 }

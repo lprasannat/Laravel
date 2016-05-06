@@ -12,57 +12,80 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Translation\FileLoader;
-use Illuminate\Contracts\Filesystem\Factory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
-class TransulateController extends BaseController {
+class TransulateController extends Controller {
 
     use AuthorizesRequests,
         AuthorizesResources,
         DispatchesJobs,
         ValidatesRequests;
 
-    public function index() {
+    public function translate($language) {
+        
+        return view('Transulate', ['language' => $language]);
+    }
 
-        return View('Transulate');
+    public function main() {
+
+        return view('Transulate', ['language' => "english"]);
+    }
+
+    public function menu($language) {
+
+        $object = new TransulateController();
+        $menu = $object->$language();
+        return view('menu',['menu'=>$menu,'language'=>$language]);
     }
 
     public function english() {
-        $obj = new TransulateController();
-        $lang = 'english';
-        
-        $words = array(
-            'Hello' => 'hello',
-            'coffee' => 'coffee'
+
+        $lang = array(
+            "hello" => "Hello",
+            "coffee" => "Coffee",
+            "welcome" => "Welcome",
+            "pizza" => "Pizza",
+            "burger" => "Burger",
+            "rice" => "Rice",
+            "icecream" => "Ice Cream"
         );
-        $retrive_lang = 'hello word in English Language ' . $obj->init($lang, $words);
-        return View('Transulate', ['Transulate_value' => $retrive_lang]);
+
+        return $lang;
     }
 
-    public function deutsch() {
-        $obj = new TransulateController();
-        $lang = 'deutsch';
-        $words = array(
-            'Hello' => 'hallo',
-            'coffee' => 'kaffee'
+    public function spanish() {
+
+        $lang = array(
+            "hello" => "Hola",
+            "coffee" => "Café",
+            "welcome" => "Bienvenido",
+            "pizza" => "la pizza",
+            "burger" => "hamburguesa",
+            "rice" => "arroz",
+            "icecream" => "helado"
         );
-        $retrive_lang = 'hello word in Deutsch Language ' . $obj->init($lang, $words);
-        return View('Transulate', ['Transulate_value' => $retrive_lang]);
+
+
+        return $lang;
     }
 
-    public function init($lang, $words) {
+    public function telugu() {
 
-        session()->regenerate();
+        $lang = array(
+            "hello" => "హలో",
+            "coffee" => "కాఫీ",
+            "welcome" => "స్వాగత",
+            "pizza" => "పిజ్జా",
+            "burger" => "బర్గర్",
+            "rice" => "వరి",
+            "icecream" => "ఐస్ క్రీం"
+        );
 
-        session(['lang' => $lang]);
-        if (empty(session()->get('lang'))) {
 
-            session(['lang' => "english"]);
-        }
-        $result = $words['Hello'];
-        return $result;
+        return $lang;
     }
+ 
 
 }
+?>

@@ -16,8 +16,7 @@ class MultipleController extends BaseController {
         return view('multiple');
     }
 
-    public function multipleFile() {
-        
+    public function multipleFile() {        
         $input = Input::file('upload');
         $message=count($input);
         $success="";
@@ -28,5 +27,4 @@ class MultipleController extends BaseController {
         $success= 'Successfully '.$message.' files are uploaded';
         return view('multiple',['multiplefile_value'=>$success]);
     }
-
 }

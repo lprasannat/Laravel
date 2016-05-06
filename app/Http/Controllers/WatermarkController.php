@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
 //namespace App\Http\Controllers\Redirect;
-
 use File;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -18,18 +16,14 @@ use Illuminate\Contracts\Filesystem\Factory;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-
 class WatermarkController extends BaseController {
-
     use AuthorizesRequests,
         AuthorizesResources,
         DispatchesJobs,
         ValidatesRequests;
-
     public function index() {
         return view('Watermark');
     }
-
     public function home() {
         $object = new WatermarkController();
         $input = Input::file('upload');
@@ -42,7 +36,6 @@ class WatermarkController extends BaseController {
         }
         //return View('Watermark', ['water' => $file_name]);
     }
-
     public function allowed_image($input) {
         $allowed_ext = array('jpg', 'jpeg', 'png', 'gif');
         $file_name = $input->getClientOriginalName();
@@ -51,15 +44,12 @@ class WatermarkController extends BaseController {
 //echo $file_ext;
         return (in_array($file_ext, $allowed_ext) ? true : FALSE);
     }
-
     public function watermark_image($input, $destination) {
         echo "hai";
         $watermark = imagecreatefrompng('images/watermark.png');
-
         $source = getimagesize($input);
         echo $source;
         $source_mime = $source['mime'];
-
         if ($source_mime == 'image/png') {
             $image = imagecreatefrompng($input);
         } else
@@ -69,9 +59,7 @@ class WatermarkController extends BaseController {
         if ($source_mime == 'image/gif') {
             $image = imagecreatefromgif($input);
         }
-
         imagecopy($image, $watermark, 10, 10, 0, 0, imagesx($watermark), imagesy($watermark));
         imagepng($image, $destination);
     }
-
 }

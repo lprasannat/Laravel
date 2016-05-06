@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>translate</title>
+        <title>menu</title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -27,14 +27,31 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav ">
                         <li ><a href="{{URL::route('translate',['language'=>$language])}}"> Home</a></li>
-                        <li ><a href="{{URL::route('menu',['language'=>$language])}}"> Menu</a></li>
-                       <li ><a href="{{URL::route('translate',['language'=>"english"])}}">English</a></li>
-                        <li ><a href="{{URL::route('translate',['language'=>"spanish"])}}"> Spanish</a></li>
-                        <li ><a href="{{URL::route('translate',['language'=>"telugu"])}}"> Telugu</a></li>
-                        
+                       
+                    </ul>
+                    <ul class=" nav navbar-nav pull-right">
+                         <li><a href="{{URL::route('translate',['language'=>$language])}}"> Go BAck</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
+        <?php $x=0;?>
+        <div class="col-md-4 col-md-offset-3">
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th>S No</th>
+                    <th>Menu</th>
+                </tr>
+                
+        @foreach($menu as $value)
+        <tr>
+            <td><?php echo ++$x;?></td>
+            <td>{{$value}}</td>
+        </tr>
+        @endforeach
+            </table>
+        </div>
+        </div>
  </body>
 </html>

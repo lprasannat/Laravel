@@ -113,7 +113,7 @@ Route::any('menu/{language}', array(
 
 Route::get('spellchecker', 'SpellcheckerController@spellcheck');
 Route::post('checkspelling', 'SpellcheckerController@checkspelling');
-
+//
 //xmlfeed-----------------------------------------------------
 Route::get('/xmlfeed', 'XmlfeedController@index');
 //photoalbum--------------------------------------------------
@@ -190,11 +190,51 @@ Route::get('/emails', array(
 //Dynamic rss------------------------------------------------------
 Route::get('/dynamicrss', 'DynamicRssController@index');
 //LikeButton -------------------------------------------------------
-Route::get('/like', 'LikeButtonController@index');
-//Route::get('/likebutton', array(
-//    'as' => 'LikeButton',
-//    'uses' => 'LikeButtonController@init'
-//));
+Route::get('LikeButton', array(
+    'as' => 'LikeButton',
+    'uses' => 'LikeController@index'));
+Route::post('like_add', array('as' => 'like_add', 'uses' => 'LikeController@like_add'));
+Route::post('like_get', array('as' => 'like_get', 'uses' => 'LikeController@like_get'));
+
+//mini shopping cart
+
+Route::get('minishoppingcart', array(
+    'as' => 'minishoppingcart',
+    'uses' => 'likebuttonController@shoppingcart'
+));
+Route::post('addtocart', array(
+    'as' => 'addtocart',
+    'uses' => 'likebuttonController@addcart'
+));
+Route::post('checkcart', 'likebuttonController@checkcart');
+Route::post('checkout', array(
+    'as' => 'checkout',
+    'uses' => 'likebuttonController@checkout'
+));
+Route::get('incrementproduct/{id}', array(
+    'as' => 'incrementproduct',
+    'uses' => 'likebuttonController@addproduct'
+));
+
+Route::get('decrementproduct/{id}', array(
+    'as' => 'decrementproduct',
+    'uses' => 'likebuttonController@deductproduct'
+));
+Route::get('deleteproduct/{id}', array(
+    'as' => 'deleteproduct',
+    'uses' => 'likebuttonController@deleteproduct'
+));
+Route::post('payment', array(
+    'as' => 'payment',
+    'uses' => 'likebuttonController@payment'
+));
+Route::post('paid', array(
+    'as' => 'paid',
+    'uses' => 'likebuttonController@paid'
+));
+
+//------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 //php expert string functions--------------------------------
 Route::get('/stringfunctions', 'PhpExpertStringController@index');
 Route::get('/stringfunctions12', 'PhpExpertStringController@NameLength');

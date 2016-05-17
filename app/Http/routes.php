@@ -1,10 +1,10 @@
-
 <?php
 
 Route::get('/', array(
     'as' => 'home',
     'uses' => 'BController@home'
 ));
+//hit counter--------------------------------------------------
 Route::get('/boot', array(
     'as' => 'boot',
     'uses' => 'hitcontroler@home'
@@ -280,7 +280,18 @@ Route::group(array('before' => 'guest'), function() {
         'uses' => 'accountcontroller@getActivate'
     ));
 });
-
+//about a site development
+Route::get('/home', function() {
+    return view('Homes');
+});
+Route::get('/about', function() {
+    return view('About');
+});
+Route::get('/contactus','WebDevelopmentController@contacts');
+Route::post('/contactus', array(
+    'as' => 'Contact',
+    'uses'=>'WebDevelopmentController@contact'
+    ));
 /*use App\User;
 Route::get('User',function(){ 
     
@@ -295,4 +306,5 @@ Route::get('User',function(){
         });
 
 });
+
 

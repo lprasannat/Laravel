@@ -21,7 +21,7 @@
         <nav class="navbar-default navbar-fixed">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" id="cloud"><span  class="glyphicon glyphicon-home"></span></a>
+                    <a class="navbar-brand" id="cloud"><span  class="glyphicon glyphicon-home">MINI SHOPPING CART</span></a>
                     <button type="button" class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="sr-only"> Toggle</span>
                         <span class="icon-bar"></span>

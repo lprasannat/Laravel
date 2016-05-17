@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/lakshmi/Karmanya/mydev/laravel/resources/views/Spellchecker.blade.php</file>
-            <file>file:/home/lakshmi/Karmanya/mydev/laravel/app/Http/Controllers/TransulateController.php</file>
-            <file>file:/home/lakshmi/Karmanya/mydev/laravel/app/Http/Controllers/SpellcheckerController.php</file>
+            <file>file:/home/lakshmi/Karmanya/mydev/laravel/resources/views/Like.blade.php</file>
+            <file>file:/home/lakshmi/Karmanya/mydev/laravel/public/js/like.js</file>
             <file>file:/home/lakshmi/Karmanya/mydev/laravel/app/Http/routes.php</file>
+            <file>file:/home/lakshmi/Karmanya/mydev/laravel/app/Http/Controllers/LikeController.php</file>
         </group>
     </open-files>
 </project-private>

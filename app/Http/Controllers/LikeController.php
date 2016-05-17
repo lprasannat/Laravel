@@ -28,7 +28,7 @@ class LikeController extends BaseController {
     public function index() {
         // return view('Like');
         $object = new LikeController();
-        $limit = 6;
+        $limit = 1;
         session()->regenerate();
         session(['User_Id' => 1]);
         $article = $object->get_articles($limit);
